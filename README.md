@@ -8,5 +8,6 @@ A web app that allows users to search for and view weather conditions including 
 * CSS 
 * JavaScript/ JQuery
 * OpenWeather One Call API
+* Dayjs
 * Bootstrap 
 * Fontawesome 
