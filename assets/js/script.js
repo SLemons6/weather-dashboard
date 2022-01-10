@@ -24,7 +24,7 @@ function showSearchHistory() {
         var btn = document.createElement('button');
         btn.setAttribute('type', 'button');
         btn.setAttribute('current', 'aria-controls');
-        btn.classList.add('btn', 'search-history-btn', 'text-center', 'text-dark', 'my-2', 'border', 'rounded-1', 'fw-bold');
+        btn.classList.add('btn', 'search-history-btn', 'text-center', 'text-dark', 'my-2', 'border', 'rounded-1');
         btn.style.backgroundColor = "#b3b3b3"
         btn.setAttribute('city-search', citySearchHistory[i]);
         btn.textContent = citySearchHistory[i];
