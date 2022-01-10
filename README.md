@@ -6,7 +6,7 @@ A web app that allows users to search for and view weather conditions including 
 ## Built With
 * HTML 
 * CSS 
-* JavaScript/ JQuery
+* JavaScript
 * OpenWeather One Call API
 * Dayjs
 * Bootstrap 
