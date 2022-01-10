@@ -24,7 +24,8 @@ function showSearchHistory() {
         var btn = document.createElement('button');
         btn.setAttribute('type', 'button');
         btn.setAttribute('current', 'aria-controls');
-        btn.classList.add('btn', 'btn-secondary', 'search-history-btn');
+        btn.classList.add('btn', 'search-history-btn', 'text-center', 'text-dark', 'my-2', 'border', 'rounded-1', 'fw-bold');
+        btn.style.backgroundColor = "#b3b3b3"
         btn.setAttribute('city-search', citySearchHistory[i]);
         btn.textContent = citySearchHistory[i];
         searchHistoryEl.append(btn);
@@ -76,9 +77,10 @@ function showCurrent(city, weather, time) {
 
     weatherCard.setAttribute('class', 'card');
     weatherCardBody.setAttribute('class', 'card-body');
+
     weatherCard.append(weatherCardBody);
 
-    heading.setAttribute('class', 'h3 card-title');
+    heading.setAttribute('class', 'h3 card-title fw-bold');
     temperatureEl.setAttribute('class', 'card-text');
     windSpeedEl.setAttribute('class', 'card-text');
     humidityEl.setAttribute('class', 'card-text');
@@ -119,7 +121,7 @@ function createForecastCard(forecast, time) {
     var unixtext = forecast.dt;
     var iconUrl = `https://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
     var iconDescription = forecast.weather[0].description;
-    var tempF = forecast.temp.day;
+    var temp = forecast.temp.day;
     var { humidity } = forecast;
     var windSpeed = forecast.wind_speed;
   
@@ -127,18 +129,19 @@ function createForecastCard(forecast, time) {
     var column = document.createElement('div');
     var forecastCard = document.createElement('div');
     var forecastCardBody = document.createElement('div');
-    var cardTitle = document.createElement('h5');
+    var forecastCardTitle = document.createElement('h5');
     var weatherIcon = document.createElement('img');
     var temperatureEl = document.createElement('p');
     var windSpeedEl = document.createElement('p');
     var humidityEl = document.createElement('p');
   
     column.append(forecastCard);
-    card.append(forecastCardBody);
-    forecastCardBody.append(cardTitle, weatherIcon, temperatureEl, windSpeedEl, humidityEl);
+    forecastCard.append(forecastCardBody);
+    forecastCardBody.append(forecastCardTitle, weatherIcon, temperatureEl, windSpeedEl, humidityEl);
   
     column.setAttribute('class', 'col-md');
-    forecastCard.setAttribute('class', 'card bg-primary h-100 text-white');
+    forecastCard.setAttribute('class', 'card h-100 text-white');
+    forecastCard.style.backgroundColor = "#19334d"
     forecastCardBody.setAttribute('class', 'card-body p-2');
     forecastCardTitle.setAttribute('class', 'card-title');
     temperatureEl.setAttribute('class', 'card-text');
@@ -149,7 +152,7 @@ function createForecastCard(forecast, time) {
     forecastCardTitle.textContent = dayjs.unix(unixtext).tz(time).format('M/D/YYYY');
     weatherIcon.setAttribute('src', iconUrl);
     weatherIcon.setAttribute('alt', iconDescription);
-    temperatureEl.textContent = `Temp: ${tempF} °F`;
+    temperatureEl.textContent = `Temp: ${temp} °F`;
     windSpeedEl.textContent = `Wind: ${windSpeed} MPH`;
     humidityEl.textContent = `Humidity: ${humidity} %`;
   
@@ -158,7 +161,7 @@ function createForecastCard(forecast, time) {
   
   // Display 5 day forecast.
   function displayFiveDayForecast(forecast, time) {
-    // Create unix timestamps for forecast
+    // Create timestamps 
     var firstDay = dayjs().tz(time).add(1, 'day').startOf('day').unix();
     var lastDay = dayjs().tz(time).add(6, 'day').startOf('day').unix();
   
@@ -167,13 +170,14 @@ function createForecastCard(forecast, time) {
   
     forecastColumn.setAttribute('class', 'col-12');
     forecastHeading.textContent = '5-Day Forecast:';
+    forecastHeading.setAttribute('class', 'fw-bold');
     forecastColumn.append(forecastHeading);
   
     futureWeatherEl.innerHTML = '';
     futureWeatherEl.append(forecastColumn);
     for (var i = 0; i < forecast.length; i++) {
       if (forecast[i].dt >= firstDay && forecast[i].dt < lastDay) {
-        displayFiveDayForecast(forecast[i], time);
+        createForecastCard(forecast[i], time);
       }
     }
   }
